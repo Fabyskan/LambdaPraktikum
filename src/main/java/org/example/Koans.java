@@ -1,8 +1,6 @@
 package org.example;
 import java.util.function.*;
 
-import java.util.function.BiConsumer;
-
 public class Koans {
 
     public static void mapArray(int[] array, UnaryOperator<Integer> f){
@@ -18,4 +16,21 @@ public class Koans {
         }
         return array;
     }
+
+    public static int[] iterateFunction(int length, int first, IntUnaryOperator f){
+        int[] array = new int[length];
+        array[0] = first;
+
+        for(int i = 1; i<length; i++){
+            array[i] = f.applyAsInt(array[i - 1]);
+        }
+        return array;
+    }
+
+    public static DoubleUnaryOperator createMultiplier(double d){
+        return x -> x*d;
+    }
+
+
+
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import java.util.Random;
+import java.util.function.DoubleUnaryOperator;
 
 public class KoansTest {
     @Test
@@ -55,4 +56,29 @@ public class KoansTest {
         //assert
         Assertions.assertArrayEquals(expected,array);
     }
+
+    @Test
+    void testIterateFunction() {
+        //arrange
+        int[] expected = {0,1,2,3,4};
+        int[] expected2 = {1,2,4,8,16};
+        //act
+        int[] array = Koans.iterateFunction(5, 0, x -> x+1);
+        int[] array2 = Koans.iterateFunction(5, 1, x -> x*2);
+        //assert
+        Assertions.assertArrayEquals(expected,array);
+        Assertions.assertArrayEquals(expected2,array2);
+    }
+
+    @Test
+    void testCreateMultiplier(){
+        //arrange
+        double test = 3.141;
+        double expected = 31.41;
+        //act
+        DoubleUnaryOperator i = Koans.createMultiplier(10);
+        //assert
+        assertEquals(expected, i.applyAsDouble(test));
+    }
+
 }
