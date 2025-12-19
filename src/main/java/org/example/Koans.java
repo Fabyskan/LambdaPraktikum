@@ -40,6 +40,6 @@ public class Koans {
 
     public static <T> Predicate<T> duplicateChecker(){
         HashSet<T> set = new HashSet<>();
-        return x -> set.add(x);
+        return set::add;
     }
 }
