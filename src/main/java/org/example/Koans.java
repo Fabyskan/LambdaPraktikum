@@ -1,4 +1,5 @@
 package org.example;
+import java.util.HashSet;
 import java.util.function.*;
 
 public class Koans {
@@ -6,7 +7,7 @@ public class Koans {
     public static void mapArray(int[] array, UnaryOperator<Integer> f){
         for(int i=0;i<array.length;i++){
             array[i] = f.apply(array[i]);
-        };
+        }
     }
 
     public static double[] fillArray(int length, Supplier<Double> s){
@@ -31,6 +32,14 @@ public class Koans {
         return x -> x*d;
     }
 
+    public static void forEachArray(String[] strings, Consumer<String> c){
+        for(int i=0;i<strings.length;i++){
+            c.accept(strings[i]);
+        }
+    }
 
-
+    public static <T> Predicate<T> duplicateChecker(){
+        HashSet<T> set = new HashSet<>();
+        return x -> set.add(x);
+    }
 }

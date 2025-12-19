@@ -4,7 +4,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import java.util.Random;
+import java.util.function.Consumer;
 import java.util.function.DoubleUnaryOperator;
+import java.util.function.*;
 
 public class KoansTest {
     @Test
@@ -79,6 +81,31 @@ public class KoansTest {
         DoubleUnaryOperator i = Koans.createMultiplier(10);
         //assert
         assertEquals(expected, i.applyAsDouble(test));
+    }
+
+    @Test
+    void testForEachArray(){
+        //arrange
+        StringBuilder test = new StringBuilder();
+        String[] strings = {"A","B","C","D","E","F","G","H"};
+        //act
+        Koans.forEachArray(strings, test::append);
+        //assert
+        assertEquals("ABCDEFGH",test.toString());
+    }
+
+    @Test
+    void testDuplicateChecker(){
+        //arrange
+        String a = "A";
+        String b = "B";
+        String a2 = "A";
+        //act
+        Predicate<String> i = Koans.duplicateChecker();
+        //assert
+        assertTrue(i.test(a));
+        assertTrue(i.test(b));
+        assertFalse(i.test(a2));
     }
 
 }
